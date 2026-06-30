@@ -639,7 +639,7 @@ html,body{height:100%;background:#000;color:#fff;font-family:'Inter',sans-serif;
       <div class="pf-addr-sub" id="pfSub"></div>
     </div>
     <div class="act-row">
-      <button class="act-btn primary" onclick="connectWallet()">Connect Wallet</button>
+      <button class="act-btn primary" id="pfConnectBtn" onclick="connectWallet()">Connect Wallet</button>
       <button class="act-btn" onclick="showToast('Withdraw available on mainnet!')">Withdraw</button>
     </div>
     <div class="pf-grid">
@@ -964,6 +964,8 @@ function onConnected(){
   document.getElementById('pfAddr').textContent=walletAddress;
   document.getElementById('pfAddr').style.cssText='font-size:11px;color:#fff;word-break:break-all;line-height:1.5';
   document.getElementById('pfSub').innerHTML='Testnet · <span style="color:var(--yes)">Active ✓</span>';
+  const cbtn=document.getElementById('pfConnectBtn');
+  if(cbtn){cbtn.textContent='✅ Connected';cbtn.disabled=true;cbtn.style.opacity='0.6';cbtn.onclick=null;}
 }
 async function doBet(){
   if(!walletAddress){closeOv({target:document.getElementById('ov')});await connectWallet();return;}
